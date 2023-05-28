@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AspNetCore" Version="6.5.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+  </ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /y $(TargetDir)*.dll ..\..\..\..\Plugins\net6.0\" />
+	</Target>
+  <ItemGroup>
+    <ProjectReference Include="..\Htsc.Shared.Application\Htsc.Shared.Application.csproj" />
+    <ProjectReference Include="..\Htsc.Shared.EntityFrameworkCore\Htsc.Shared.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
